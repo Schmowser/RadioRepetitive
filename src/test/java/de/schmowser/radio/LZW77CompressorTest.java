@@ -125,6 +125,42 @@ public class LZW77CompressorTest {
             "We oh, not getting back together\n" +
             "You go talk to your friends, talk to my friends, talk to me (talk to me)\n" +
             "But we are never ever, ever, ever getting back together";
+    private String lyrics3 = "I'm pretty sure we almost broke up last night\n" +
+            "I threw my phone across the room at you\n" +
+            "I was expecting some dramatic turn-away\n" +
+            "But you stayed\n" +
+            "This morning I said we should talk about it\n" +
+            "'Cause I read you should never leave a fight unresolved\n" +
+            "That's when you came in wearing a football helmet and said \"okay, let's talk.\"\n" +
+            "And I said,\n" +
+            "Stay, stay, stay\n" +
+            "I've been lovin' you for quite some time, time, time\n" +
+            "You think that it's funny when I'm mad, mad, mad\n" +
+            "But I think that it's best if we both stay\n" +
+            "Before you, I'd only dated self-indulgent takers\n" +
+            "That took all of their problems out on me\n" +
+            "But you carry my groceries, and now I'm always laughin'\n" +
+            "And I love you because you have given me no choice but to\n" +
+            "Stay, stay, stay\n" +
+            "I've been lovin' you for quite some time, time, time\n" +
+            "You think that it's funny when I'm mad, mad, mad\n" +
+            "But I think that it's best if we both stay, stay, stay, stay\n" +
+            "You took the time to memorize me\n" +
+            "My fears, my hopes, and dreams\n" +
+            "I just like hangin' out with you, all the time\n" +
+            "All those times that you didn't leave\n" +
+            "It's been occurring to me I'd like to hang out with you, for my whole life\n" +
+            "Stay, and I'll be loving you for quite some time\n" +
+            "No one else is going to love me, when I get mad, mad mad\n" +
+            "So I think that it's best if we both stay, stay, stay, stay, stay, stay\n" +
+            "Stay, stay, stay\n" +
+            "I've been lovin' you for quite some time, time, time\n" +
+            "You think that it's funny when I'm mad, mad, mad\n" +
+            "But I think that it's best if we both stay, stay, stay, stay, stay, stay\n" +
+            "Stay, stay, stay\n" +
+            "I've been lovin' you for quite some time, time, time\n" +
+            "You think that it's funny when I'm mad, mad, mad\n" +
+            "But I think that it's best if we both stay";
 
     @Test
     public void minimize_test_CamelCase() {
@@ -140,7 +176,7 @@ public class LZW77CompressorTest {
     public void compress_document1_MustReturnCorrectCompressionRate() {
 
         List<LZWTriple> output = lzw77Compressor_500_50.compressEnglishDocument(doc1);
-        assertEquals(90.0, lzw77Compressor_500_50.computeCompressionRate(doc1, output), 0.0);
+        assertEquals(90.0, lzw77Compressor_500_50.computeCompressionRate(doc1, output), 1.0);
 
     }
 
@@ -148,7 +184,7 @@ public class LZW77CompressorTest {
     public void compress_document2_MustReturnCorrectCompressionRate() {
 
         List<LZWTriple> output = lzw77Compressor_2000_250.compressEnglishDocument(doc2);
-        assertEquals(62.0, lzw77Compressor_2000_250.computeCompressionRate(doc2, output), 0.0);
+        assertEquals(62.0, lzw77Compressor_2000_250.computeCompressionRate(doc2, output), 1.0);
 
     }
 
@@ -156,7 +192,7 @@ public class LZW77CompressorTest {
     public void compress_document3_MustReturnCorrectCompressionRate() {
 
         List<LZWTriple> output = lzw77Compressor_2000_250.compressEnglishDocument(doc3);
-        assertEquals(42.0, lzw77Compressor_2000_250.computeCompressionRate(doc3, output), 0.0);
+        assertEquals(42.0, lzw77Compressor_2000_250.computeCompressionRate(doc3, output), 1.0);
 
     }
 
@@ -165,7 +201,7 @@ public class LZW77CompressorTest {
 
         String minLyrics = LZW77Compressor.minimize(lyrics1);
         List<LZWTriple> output = lzw77Compressor_2000_250.compressEnglishDocument(minLyrics);
-        assertEquals(19.0, lzw77Compressor_2000_250.computeCompressionRate(minLyrics, output), 0.0);
+        assertEquals(19.0, lzw77Compressor_2000_250.computeCompressionRate(minLyrics, output), 1.0);
 
     }
 
@@ -226,6 +262,19 @@ public class LZW77CompressorTest {
 
         String minLyrics = prepareLyrics(lyrics2);
         List<LZWTriple> throughput = lzw77Compressor_2000_250.compressEnglishDocument(minLyrics);
+        System.out.print(lzw77Compressor_2000_250.computeCompressionRate(minLyrics, throughput));
+        String output = lzw77Compressor_2000_250.decompressEnglishDocument(throughput);
+
+        assertEquals(minLyrics, output);
+
+    }
+
+    @Test
+    public void compress_decompress_MustReturnSameString_lyrics3() {
+
+        String minLyrics = prepareLyrics(lyrics3);
+        List<LZWTriple> throughput = lzw77Compressor_2000_250.compressEnglishDocument(minLyrics);
+        System.out.print(lzw77Compressor_2000_250.computeCompressionRate(minLyrics, throughput));
         String output = lzw77Compressor_2000_250.decompressEnglishDocument(throughput);
 
         assertEquals(minLyrics, output);
@@ -233,7 +282,7 @@ public class LZW77CompressorTest {
     }
 
     private String prepareLyrics(String lyrics) {
-        String resultString = LZW77Compressor.minimize(lyrics2);
+        String resultString = LZW77Compressor.minimize(lyrics);
         return LZW77Compressor.removeLinebreaks(resultString);
     }
 
