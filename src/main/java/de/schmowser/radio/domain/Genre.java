@@ -12,6 +12,7 @@ public enum Genre {
     COUNTRY,
     DANCE,
     ELECTRO,
+    HOUSE,
     LATIN,
     R_N_B,
     REGGAE,
