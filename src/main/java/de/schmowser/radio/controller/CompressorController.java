@@ -35,17 +35,20 @@ public class CompressorController {
     }
 
     @GetMapping("/songs/{artist}")
+    @ResponseStatus(HttpStatus.OK)
     public List<Song> getByArtist(@PathVariable String artist) {
         return songRepository.findAllByArtist(artist);
     }
 
     @GetMapping("/songs/{artist}/{title}")
+    @ResponseStatus(HttpStatus.OK)
     public List<Song> getByArtistAndTitle(@PathVariable String artist, @PathVariable String title) {
         String lowerCaseTitle = LZW77Compressor.minimize(title);
         return songRepository.findAllByArtistAndTitle(artist, lowerCaseTitle);
     }
 
     @GetMapping("/songs")
+    @ResponseStatus(HttpStatus.OK)
     public List<Song> getByGenre(@RequestParam(value = "genre") Genre genre) {
         return songRepository.findAllByGenreIn(genre);
     }
@@ -69,6 +72,8 @@ public class CompressorController {
 
         return songToDatabase;
     }
+
+
 
     @GetMapping("/error")
     @ResponseStatus(HttpStatus.NOT_FOUND)
