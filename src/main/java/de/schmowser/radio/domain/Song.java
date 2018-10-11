@@ -1,5 +1,6 @@
 package de.schmowser.radio.domain;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.lang.Nullable;
 
@@ -19,6 +20,7 @@ import java.util.Set;
 @Data
 @Table(name = "SONG")
 @Entity
+@Builder
 public class Song {
 
     @Id
