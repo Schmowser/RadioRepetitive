@@ -3,7 +3,7 @@ CREATE TABLE SONG (
     Artist varchar (255) NOT NULL,
     Title varchar (255) NOT NULL,
     Year INTEGER,
-    CompressionRate FLOAT
+    Compression_Rate FLOAT
 );
 
 CREATE TABLE TBL_SONG_GENRE (

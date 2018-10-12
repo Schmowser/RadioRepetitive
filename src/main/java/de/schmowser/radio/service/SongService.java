@@ -8,12 +8,10 @@ import org.springframework.stereotype.Component;
 public class SongService {
 
     public Song mapSongRequestToSong(SongRequest songRequest) {
-        Song song = new Song();
-
-        song.setTitle(songRequest.getTitle());
-        song.setArtist(songRequest.getArtist());
-
-        return song;
+        return Song.builder()
+                .artist(songRequest.getArtist())
+                .title(songRequest.getTitle())
+                .build();
     }
 
 }
