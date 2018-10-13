@@ -73,8 +73,6 @@ public class CompressorController {
         return songToDatabase;
     }
 
-
-
     @GetMapping("/error")
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String pageNotFound() {

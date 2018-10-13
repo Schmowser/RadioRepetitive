@@ -17,6 +17,8 @@ public interface SongRepository extends CrudRepository<Song, Long> {
 
     List<Song> findAllByGenreIn(Genre genre);
 
+    //List<Song> findAllByYearBetween(int startYear, int endYear);
+
     Song save(Song song);
 
 }
