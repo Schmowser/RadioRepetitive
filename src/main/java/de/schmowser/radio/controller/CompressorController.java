@@ -53,6 +53,12 @@ public class CompressorController {
         return songRepository.findAllByGenreIn(genre);
     }
 
+    @GetMapping("/songs/period")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Song> getByPeriod(@RequestParam(value = "startyear") int startYear, @RequestParam(value = "endyear") int endYear) {
+        return songRepository.findAllByYearBetween(startYear, endYear);
+    }
+
     @PostMapping("/compress")
     @ResponseStatus(HttpStatus.OK)
     public float compress(@RequestBody String textToBeCompressed) {
