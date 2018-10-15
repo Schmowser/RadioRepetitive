@@ -31,6 +31,8 @@ public class Song {
 
     private String title;
 
+    private String album;
+
     private int year;
 
     @ElementCollection(targetClass = Genre.class)

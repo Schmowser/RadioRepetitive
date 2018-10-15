@@ -1,6 +1,6 @@
 package de.schmowser.radio;
 
-import de.schmowser.radio.controller.CompressorController;
+import de.schmowser.radio.controller.SongController;
 import de.schmowser.radio.domain.Genre;
 import de.schmowser.radio.domain.Song;
 import de.schmowser.radio.domain.SongRepository;
@@ -20,16 +20,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
-import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.everyItem;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(CompressorController.class)
-public class CompressorControllerTest {
+@WebMvcTest(SongController.class)
+public class SongControllertest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -88,8 +91,7 @@ public class CompressorControllerTest {
         // Assert
         result.andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2))
-                .andExpect(jsonPath("$[0].artist", is("Taylor Swift")))
-                .andExpect(jsonPath("$[1].artist", is("Taylor Swift")));
+                .andExpect(jsonPath("$[*].artist", everyItem(is("Taylor Swift"))));
 
     }
 
@@ -106,8 +108,28 @@ public class CompressorControllerTest {
         // Assert
         result.andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2))
-                .andExpect(jsonPath("$[0].genre", contains("POP")))
-                /*.andExpect(jsonPath("$[1].genre", is("POP")))*/;
+                .andExpect(jsonPath("$[*].genre", everyItem(hasItem(is("POP")))));
+
+    }
+
+    @Test
+    public void getByPeriod_shouldReturnOk() throws Exception {
+
+        // Arrange
+        final int startYear = 1990;
+        final int endYear = 2010;
+        when(songRepository.findAllByYearBetween(startYear, endYear)).thenReturn(Arrays.asList(song2, song3));
+
+        // Act
+        ResultActions result = mockMvc.perform(get("/songs/period")
+                .param("startyear", Integer.toString(startYear))
+                .param("endyear", Integer.toString(endYear)));
+
+        // Assert
+        result.andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$[*].year", everyItem(greaterThanOrEqualTo(startYear))))
+                .andExpect(jsonPath("$[*].year", everyItem(lessThanOrEqualTo(endYear))));
 
     }
 
