@@ -36,7 +36,7 @@ public class SongController {
     @GetMapping("/songs/{artist}")
     @ResponseStatus(HttpStatus.OK)
     public List<Song> getByArtist(@PathVariable String artist) {
-        return songRepository.findAllByArtist(artist);
+        return songRepository.findAllByArtistOrderByYearAsc(artist);
     }
 
     @GetMapping("/songs/{artist}/{title}")
@@ -54,7 +54,7 @@ public class SongController {
     @GetMapping("/songs/period")
     @ResponseStatus(HttpStatus.OK)
     public List<Song> getByPeriod(@RequestParam(value = "startyear") int startYear, @RequestParam(value = "endyear") int endYear) {
-        return songRepository.findAllByYearBetween(startYear, endYear);
+        return songRepository.findAllByYearBetweenOrderByCompressionRateAsc(startYear, endYear);
     }
 
     @PostMapping("/songs/compress")
@@ -69,6 +69,14 @@ public class SongController {
         songRepository.save(songToDatabase);
 
         return songToDatabase;
+    }
+
+    @GetMapping("/rates/{artist}/{title}")
+    @ResponseStatus(HttpStatus.OK)
+    public Double getRatesByArtistAndTitle(@PathVariable String artist, @PathVariable String title) {
+        List<Song> songList = songRepository.findAllByArtistAndTitle(artist, title);
+        Double rateSum = songList.stream().mapToDouble(Song::getCompressionRate).sum();
+        return rateSum;
     }
 
     @GetMapping("/error")

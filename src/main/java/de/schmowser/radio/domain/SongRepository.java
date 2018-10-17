@@ -11,13 +11,13 @@ public interface SongRepository extends CrudRepository<Song, Long> {
 
     Optional<Song> findById(long id);
 
-    List<Song> findAllByArtist(String artist);
+    List<Song> findAllByArtistOrderByYearAsc(String artist);
 
     List<Song> findAllByArtistAndTitle(String artist, String title);
 
     List<Song> findAllByGenreIn(Genre genre);
 
-    List<Song> findAllByYearBetween(int startYear, int endYear);
+    List<Song> findAllByYearBetweenOrderByCompressionRateAsc(int startYear, int endYear);
 
     Song save(Song song);
 

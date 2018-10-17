@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(SongController.class)
-public class SongControllertest {
+public class SongControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -83,7 +83,7 @@ public class SongControllertest {
     public void getByArtist_shouldReturnOk() throws Exception {
 
         // Arrange
-        when(songRepository.findAllByArtist("Taylor Swift")).thenReturn(Arrays.asList(song1, song2));
+        when(songRepository.findAllByArtistOrderByYearAsc("Taylor Swift")).thenReturn(Arrays.asList(song1, song2));
 
         // Act
         ResultActions result = mockMvc.perform(get("/songs/Taylor Swift"));
@@ -118,7 +118,7 @@ public class SongControllertest {
         // Arrange
         final int startYear = 1990;
         final int endYear = 2010;
-        when(songRepository.findAllByYearBetween(startYear, endYear)).thenReturn(Arrays.asList(song2, song3));
+        when(songRepository.findAllByYearBetweenOrderByCompressionRateAsc(startYear, endYear)).thenReturn(Arrays.asList(song2, song3));
 
         // Act
         ResultActions result = mockMvc.perform(get("/songs/period")

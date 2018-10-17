@@ -14,7 +14,7 @@ public class CompressionService {
 
     @Autowired
     public CompressionService() {
-        this.lzw77Compressor = new LZW77Compressor(5000, 500);
+        this.lzw77Compressor = new LZW77Compressor(6000, 800);
     }
 
     public float compressAndReturnRate(String textToBeCompressed) {
