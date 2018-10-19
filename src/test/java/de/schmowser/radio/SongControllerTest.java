@@ -99,7 +99,7 @@ public class SongControllerTest {
     public void getByGenre_shouldReturnOk() throws Exception {
 
         // Arrange
-        when(songRepository.findAllByGenreIn(Genre.POP)).thenReturn(Arrays.asList(song1, song2));
+        when(songRepository.findAllByGenreInOrderByYearAsc(Genre.POP)).thenReturn(Arrays.asList(song1, song2));
 
         // Act
         ResultActions result = mockMvc.perform(get("/songs")
@@ -118,7 +118,7 @@ public class SongControllerTest {
         // Arrange
         final int startYear = 1990;
         final int endYear = 2010;
-        when(songRepository.findAllByYearBetweenOrderByCompressionRateAsc(startYear, endYear)).thenReturn(Arrays.asList(song2, song3));
+        when(songRepository.findAllByYearBetweenOrderByCompressionRateDesc(startYear, endYear)).thenReturn(Arrays.asList(song2, song3));
 
         // Act
         ResultActions result = mockMvc.perform(get("/songs/period")

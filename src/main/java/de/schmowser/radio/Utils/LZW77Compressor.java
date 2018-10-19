@@ -119,7 +119,7 @@ public class LZW77Compressor {
             }
         }
 
-        return (float) compressedSize * 100 / originalSize;
+        return (1 - (float) compressedSize / originalSize) * 100;
 
     }
 
