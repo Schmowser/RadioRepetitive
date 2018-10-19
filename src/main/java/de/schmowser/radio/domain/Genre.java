@@ -16,6 +16,7 @@ public enum Genre {
     LATIN,
     R_N_B,
     REGGAE,
-    SOUNDTRACK
+    SOUNDTRACK,
+    DISCO
 
 }
