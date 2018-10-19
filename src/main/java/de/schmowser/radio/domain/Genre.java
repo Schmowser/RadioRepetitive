@@ -17,6 +17,8 @@ public enum Genre {
     R_N_B,
     REGGAE,
     SOUNDTRACK,
-    DISCO
+    DISCO,
+    DEUTSCH,
+    EUROVISION
 
 }

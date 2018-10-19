@@ -36,6 +36,7 @@ INSERT INTO SONG (artist, title, year, compression_rate) VALUES ('Snoop Dogg', '
 INSERT INTO SONG (artist, title, year, compression_rate) VALUES ('No Angels', 'Daylight in Your Eyes', 2001, 74.9);
 
 INSERT INTO SONG (artist, title, year, compression_rate) VALUES ('Avril Lavigne', 'Its My Life', 2002, 45.7);
+INSERT INTO SONG (artist, title, year, compression_rate) VALUES ('Alizée', 'Moi... Lolita', 2000, 73.7);
 
 -- Genre
 -- INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Wannabe', 'POP');
