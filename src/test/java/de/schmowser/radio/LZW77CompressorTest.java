@@ -161,6 +161,7 @@ public class LZW77CompressorTest {
             "I've been lovin' you for quite some time, time, time\n" +
             "You think that it's funny when I'm mad, mad, mad\n" +
             "But I think that it's best if we both stay";
+    private String alphabet = "abcdefghijklmnopqrst";
 
     @Test
     public void minimize_test_CamelCase() {
@@ -202,6 +203,14 @@ public class LZW77CompressorTest {
         String minLyrics = LZW77Compressor.minimize(lyrics1);
         List<LZWTriple> output = lzw77Compressor_2000_250.compressEnglishDocument(minLyrics);
         assertEquals(19.0, lzw77Compressor_2000_250.computeCompressionRate(minLyrics, output), 1.0);
+
+    }
+
+    @Test
+    public void compress_alphabet(){
+
+        List<LZWTriple> output = lzw77Compressor_2000_250.compressEnglishDocument(alphabet);
+        assertEquals(100.0, lzw77Compressor_2000_250.computeCompressionRate(alphabet, output), 1.0);
 
     }
 
