@@ -38,6 +38,59 @@ INSERT INTO SONG (artist, title, year, compression_rate) VALUES ('Justin Bieber'
 INSERT INTO SONG (artist, title, year, compression_rate) VALUES ('Kraftklub', 'Ich Will Nicht Nach Berlin', 2012, 52.4);
 
 -- Genre
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'DEUTSCH'
+    FROM SONG
+    WHERE artist = 'Helene Fischer'
+    OR artist = 'Namika'
+    OR artist = 'Bausa'
+    OR artist = 'Gestört aber GeiL';
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'POP'
+    FROM SONG
+    WHERE artist = 'Kesha'
+    OR artist = 'Bruno Mars'
+    OR artist = 'Gotye'
+    OR artist = 'Lena Meyer-Landrut'
+    OR artist = 'Jennifer Lopez'
+    OR artist = 'Carly Rae Jepsen'
+    OR artist = 'Pharrell Williams'
+    OR artist = 'Ed Sheeran'
+    OR artist = 'Dua Lipa'
+    OR artist = 'Justin Bieber';
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'ROCK'
+    FROM SONG
+    WHERE artist = 'Disturbed';
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'LATIN'
+    FROM SONG
+    WHERE artist = 'Luis Fonsi Feat. Daddy Yankee'
+    OR artist = 'Camila Cabello';
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'HIPHOP'
+    FROM SONG
+    WHERE artist = 'Donald Glover'
+    OR artist = 'Drake';
+
+    INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'INDIE'
+    FROM SONG
+    WHERE artist = 'Lykke Li'
+    OR artist = 'Imagine Dragons'
+    OR artist = 'Kraftklub'
+    OR artist = 'Macklemore & Ryan Lewis';
+
+    INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'DANCE'
+    FROM SONG
+    WHERE artist = 'LMFAO'
+    OR artist = 'Avicii';
+
 -- INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Wannabe', 'POP');
 -- INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Macarena', 'POP');
 -- INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Blue (Da Ba Dee)', 'POP');

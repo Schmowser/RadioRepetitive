@@ -42,3 +42,53 @@ INSERT INTO SONG (artist, title, year, compression_rate) VALUES ('Alizée', 'Moi
 -- INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Wannabe', 'POP');
 -- INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Macarena', 'POP');
 -- INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Blue (Da Ba Dee)', 'POP');
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'DEUTSCH'
+    FROM SONG
+    WHERE artist = 'DJ Ötzi'
+    OR artist = 'Xavier Naidoo'
+    OR artist = 'Juli'
+    OR artist = 'Peter Fox'
+    OR artist = 'De Randfichten';
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'POP'
+    FROM SONG
+    WHERE artist = 'Nickelback'
+    OR artist = 'Emiliana Torrini'
+    OR artist = 'Cascada'
+    OR artist = 'Alicia Keys'
+    OR artist = 'Justin Timberland'
+    OR artist = 'Timbaland'
+    OR artist = 'Lady Gaga'
+    OR artist = 'Shakira'
+    OR artist = 'O-Zone'
+    OR artist = 'Black Eyed Peas'
+    OR artist = 'Kylie Minogue'
+    OR artist = 'Plain White Ts'
+    OR artist = 'Coldplay'
+    OR artist = 'No Angels'
+    OR artist = 'Alizée'
+    OR artist = 'Katy Perry'
+    OR artist = 'Maroon 5'
+    OR artist = 'Rihanna';
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'ROCK'
+    FROM SONG
+    WHERE artist = 'Evanescence'
+    OR artist = 'Wheatus'
+    OR artist = 'Avril Lavigne';
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'HIPHOP'
+    FROM SONG
+    WHERE artist = 'OutKast'
+    OR artist = '50 Cent'
+    OR artist = 'Snoop Dogg';
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'R_N_B'
+    FROM SONG
+    WHERE artist = 'Beyoncé';

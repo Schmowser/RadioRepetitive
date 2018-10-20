@@ -47,5 +47,40 @@ INSERT INTO SONG (artist, title, year, compression_rate) VALUES ('The Beatles', 
 
 -- Genre
 INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Another Brick in the Wall (Part I)', 'ROCK');
--- INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Macarena', 'POP');
--- INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Blue (Da Ba Dee)', 'POP');
+INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Sweet Dreams', 'ELECTRO');
+INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Tainted Love', 'ELECTRO');
+INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Rivers of Babylon', 'DISCO');
+INSERT INTO TBL_SONG_GENRE (song_id, genre) VALUES (SELECT id FROM SONG WHERE title = 'Funkytown', 'DISCO');
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'DEUTSCH'
+    FROM SONG
+    WHERE artist = 'Udo Jürgens'
+    OR artist = 'Joachim Witt'
+    OR artist = 'Trio'
+    OR artist = 'Spider Murphy Gang'
+    OR artist = 'Matthias Reim'
+    OR artist = 'Roland Kaiser'
+    OR artist = 'Falco';
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'POP'
+    FROM SONG
+    WHERE artist = 'Men at Work'
+    OR artist = 'Madonna'
+    OR artist = 'Wham!'
+    OR artist = 'a-ha'
+    OR artist = 'Modern Talking'
+    OR artist = 'Phil Collins'
+    OR artist = 'Cyndi Lauper'
+    OR artist = 'Dexys Midnight Runners'
+    OR artist = 'Taylor Dayne'
+    OR artist = 'Queen'
+    OR artist = 'The Beatles';
+
+INSERT INTO TBL_SONG_GENRE (song_id, genre)
+    SELECT DISTINCT id, 'ROCK'
+    FROM SONG
+    WHERE artist = 'Europe'
+    OR artist = 'Bonnie Tyler'
+    OR artist = 'Guns n Roses';
