@@ -15,9 +15,9 @@ public interface SongRepository extends CrudRepository<Song, Long> {
 
     List<Song> findAllByArtistAndTitle(String artist, String title);
 
-    List<Song> findAllByGenreIn(Genre genre);
+    List<Song> findAllByGenreInOrderByYearAsc(Genre genre);
 
-    List<Song> findAllByYearBetweenOrderByCompressionRateAsc(int startYear, int endYear);
+    List<Song> findAllByYearBetweenOrderByCompressionRateDesc(int startYear, int endYear);
 
     Song save(Song song);
 

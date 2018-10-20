@@ -177,7 +177,7 @@ public class LZW77CompressorTest {
     public void compress_document1_MustReturnCorrectCompressionRate() {
 
         List<LZWTriple> output = lzw77Compressor_500_50.compressEnglishDocument(doc1);
-        assertEquals(90.0, lzw77Compressor_500_50.computeCompressionRate(doc1, output), 1.0);
+        assertEquals(10.0, lzw77Compressor_500_50.computeCompressionRate(doc1, output), 1.0);
 
     }
 
@@ -185,7 +185,7 @@ public class LZW77CompressorTest {
     public void compress_document2_MustReturnCorrectCompressionRate() {
 
         List<LZWTriple> output = lzw77Compressor_2000_250.compressEnglishDocument(doc2);
-        assertEquals(62.0, lzw77Compressor_2000_250.computeCompressionRate(doc2, output), 1.0);
+        assertEquals(38.0, lzw77Compressor_2000_250.computeCompressionRate(doc2, output), 1.0);
 
     }
 
@@ -193,7 +193,7 @@ public class LZW77CompressorTest {
     public void compress_document3_MustReturnCorrectCompressionRate() {
 
         List<LZWTriple> output = lzw77Compressor_2000_250.compressEnglishDocument(doc3);
-        assertEquals(42.0, lzw77Compressor_2000_250.computeCompressionRate(doc3, output), 1.0);
+        assertEquals(58.0, lzw77Compressor_2000_250.computeCompressionRate(doc3, output), 1.0);
 
     }
 
@@ -202,7 +202,7 @@ public class LZW77CompressorTest {
 
         String minLyrics = LZW77Compressor.minimize(lyrics1);
         List<LZWTriple> output = lzw77Compressor_2000_250.compressEnglishDocument(minLyrics);
-        assertEquals(19.0, lzw77Compressor_2000_250.computeCompressionRate(minLyrics, output), 1.0);
+        assertEquals(81.0, lzw77Compressor_2000_250.computeCompressionRate(minLyrics, output), 1.0);
 
     }
 
@@ -210,7 +210,7 @@ public class LZW77CompressorTest {
     public void compress_alphabet(){
 
         List<LZWTriple> output = lzw77Compressor_2000_250.compressEnglishDocument(alphabet);
-        assertEquals(100.0, lzw77Compressor_2000_250.computeCompressionRate(alphabet, output), 1.0);
+        assertEquals(0.0, lzw77Compressor_2000_250.computeCompressionRate(alphabet, output), 1.0);
 
     }
 

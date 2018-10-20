@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jmusixmatch.MusixMatch;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 // material we use a third party API which copes with the legal work for us. MusixMatch
 // provides a brilliantly simple API which returns meta data and lyrics on a vast variety
 // of songs. But therefore, we are currently only allowed to send 2k calls per day.
+@Ignore
 public class MusixMatchAPITest {
 
     final String url = "https://api.musixmatch.com/ws/1.1/";

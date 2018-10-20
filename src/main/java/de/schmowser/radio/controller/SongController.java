@@ -48,13 +48,13 @@ public class SongController {
     @GetMapping("/songs")
     @ResponseStatus(HttpStatus.OK)
     public List<Song> getByGenre(@RequestParam(value = "genre") Genre genre) {
-        return songRepository.findAllByGenreIn(genre);
+        return songRepository.findAllByGenreInOrderByYearAsc(genre);
     }
 
     @GetMapping("/songs/period")
     @ResponseStatus(HttpStatus.OK)
     public List<Song> getByPeriod(@RequestParam(value = "startyear") int startYear, @RequestParam(value = "endyear") int endYear) {
-        return songRepository.findAllByYearBetweenOrderByCompressionRateAsc(startYear, endYear);
+        return songRepository.findAllByYearBetweenOrderByCompressionRateDesc(startYear, endYear);
     }
 
     @PostMapping("/songs/compress")

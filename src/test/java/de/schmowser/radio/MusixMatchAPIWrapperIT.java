@@ -6,6 +6,7 @@ import org.jmusixmatch.MusixMatchException;
 import org.jmusixmatch.entity.lyrics.Lyrics;
 import org.jmusixmatch.entity.track.Track;
 import org.jmusixmatch.entity.track.TrackData;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,6 +17,7 @@ import static org.junit.Assert.assertTrue;
 // material we use a third party API which copes with the legal work for us. MusixMatch
 // provides a brilliantly simple API which returns meta data and lyrics on a vast varierty
 // of songs. But therefore, we are currently only allowed to send 2k calls per day.
+@Ignore
 public class MusixMatchAPIWrapperIT {
 
     String apiKey = System.getProperty("musix.apikey");
