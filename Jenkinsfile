@@ -11,5 +11,10 @@ pipeline {
         echo 'Checked out master!'
       }
     }
+    stage('Print again') {
+          steps {
+            echo 'Print again!'
+          }
+        }
   }
 }
