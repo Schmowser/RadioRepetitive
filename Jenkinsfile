@@ -30,7 +30,7 @@ pipeline {
                   def RELEASE_VERSION = startReleaseInput['REL']
 
                   sh 'git branch'
-                  sh 'git branch -d release/develop'
+                  sh 'git branch -D release/develop'
                   sh 'git checkout develop'
                   executeMavenCommand "mvn -e jgitflow:release-start -DdevelopmentVersion=$DEVELOP_VERSION - DreleaseVersion=$RELEASE_VERSION"
 
