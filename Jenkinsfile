@@ -22,6 +22,6 @@ pipeline {
 
 def executeMavenCommand(mavenCommand) {
     withMaven() {
-        bat "${mavenCommand}"
+        sh "${mavenCommand}"
     }
 }
