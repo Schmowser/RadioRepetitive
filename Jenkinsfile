@@ -21,7 +21,7 @@ pipeline {
 }
 
 def executeMavenCommand(mavenCommand) {
-    #withMaven(jdk: 'jdk8', maven: 'apache-maven-3.3.9') {
+#    withMaven(jdk: 'jdk8', maven: 'apache-maven-3.3.9') {
         sh "${mavenCommand}"
-    #}
+#    }
 }
