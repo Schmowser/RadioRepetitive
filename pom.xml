@@ -124,9 +124,9 @@
                     <flowInitContext>
                         <masterBranchName>master</masterBranchName>
                         <developBranchName>develop</developBranchName>
-                        <featureBranchName>feature/</featureBranchName>
-                        <releaseBranchName>release/</releaseBranchName>
-                        <hotfixBranchName>hotfix/</hotfixBranchName>
+                        <featureBranchPrefix>feature/</featureBranchPrefix>
+                        <releaseBranchPrefix>release/</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
                         <verionTagPrefix>version-</verionTagPrefix>
                     </flowInitContext>
 
