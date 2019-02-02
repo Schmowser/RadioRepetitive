@@ -9,8 +9,9 @@ pipeline {
       steps {
         script {
           try {
-            echo env.BRANCH_NAME
-            if (env.BRANCH_NAME == 'develop') {
+            echo ${BRANCH}
+            echo ${params.BRANCH}
+            if (${BRANCH} == 'develop') {
               timeout(time: 1, unit: 'MINUTES') {
 
                 def startReleaseInput = input(
