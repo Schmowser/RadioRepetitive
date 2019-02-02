@@ -6,31 +6,30 @@ pipeline {
   stages {
 
     stage('Start Release') {
-      when {
-        return env.BRANCH_NAME == 'develop'
-      }
       steps {
         script {
           try {
-            timeout(time: 1, unit: 'MINUTES') {
+            if (env.BRANCH_NAME == 'develop') {
+              timeout(time: 1, unit: 'MINUTES') {
 
-              def startReleaseInput = input(
-                      id: 'Start', message: 'Do you want to start the release process?', parameters: [
-                              [$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Release!'],
-                              [$class: 'TextParameterDefinition', defaultValue: 'develop-SNAPSHOT', description: '', name: 'DEV'],
-                              [$class: 'TextParameterDefinition', defaultValue: '1.1', description: '', name: 'REL']
-                      ]
-              )
+                def startReleaseInput = input(
+                        id: 'Start', message: 'Do you want to start the release process?', parameters: [
+                        [$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Release!'],
+                        [$class: 'TextParameterDefinition', defaultValue: 'develop-SNAPSHOT', description: '', name: 'DEV'],
+                        [$class: 'TextParameterDefinition', defaultValue: '1.1', description: '', name: 'REL']
+                ]
+                )
 
-              if (startReleaseInput['Release!'] == true) {
+                if (startReleaseInput['Release!'] == true) {
 
-                def DEVELOP_VERSION = startReleaseInput['DEV']
-                def RELEASE_VERSION = startReleaseInput['REL']
+                  def DEVELOP_VERSION = startReleaseInput['DEV']
+                  def RELEASE_VERSION = startReleaseInput['REL']
 
-                executeMavenCommand "mvn -e jgitflow:release-start -DdevelopmentVersion=$DEVELOP_VERSION - DreleaseVersion=$RELEASE_VERSION"
+                  executeMavenCommand "mvn -e jgitflow:release-start -DdevelopmentVersion=$DEVELOP_VERSION - DreleaseVersion=$RELEASE_VERSION"
+
+                }
 
               }
-
             }
           } catch (Exception e) {
             echo 'No Release Process started.'
