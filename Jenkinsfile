@@ -32,6 +32,7 @@ pipeline {
                   sh 'git branch'
                   sh 'git branch -D release/develop'
                   sh 'git checkout develop'
+                  sh 'git pull'
                   executeMavenCommand "mvn -e jgitflow:release-start -DdevelopmentVersion=$DEVELOP_VERSION - DreleaseVersion=$RELEASE_VERSION"
 
                 }
@@ -45,29 +46,27 @@ pipeline {
     }
 
     stage('Finish Release') {
-      when {
-        anyOf {
-          branch '**/release/*'
-        }
-      }
       steps {
         script {
           try {
-            timeout(time: 1, unit: 'MINUTES') {
+            def branchName = "${params.BRANCH}"
+            if (branchName.contains('release')) {
+              timeout(time: 1, unit: 'MINUTES') {
 
-              def finishReleaseInput = input(
-                      id: 'Start', message: 'Do you want to finish the release process?', parameters: [
-                      [$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Finish!'],
-                      [$class: 'TextParameterDefinition', defaultValue: '1.1', description: '', name: 'REL']
-              ]
-              )
+                def finishReleaseInput = input(
+                        id: 'Start', message: 'Do you want to finish the release process?', parameters: [
+                        [$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Finish!'],
+                        [$class: 'TextParameterDefinition', defaultValue: '1.1', description: '', name: 'REL']
+                ]
+                )
 
-              if (finishReleaseInput['Release!'] == true) {
+                if (finishReleaseInput['Release!'] == true) {
 
-                executeMavenCommand("mvn -e jgitflow:release-finish")
+                  executeMavenCommand("mvn -e jgitflow:release-finish")
+
+                }
 
               }
-
             }
           } catch (Exception e) {
             echo 'No Release Process finished.'
