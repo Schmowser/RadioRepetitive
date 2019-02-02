@@ -31,11 +31,12 @@ pipeline {
                   def DEVELOP_VERSION = startReleaseInput['DEV']
                   def RELEASE_VERSION = startReleaseInput['REL']
 
-                  sh 'git checkout develop'
-                  sh 'git pull'
-                  executeMavenCommand "mvn -e jgitflow:release-start -DdevelopmentVersion=$DEVELOP_VERSION - DreleaseVersion=$RELEASE_VERSION"
+                  sshagent(credentials: ['7652c13d-6bfb-441d-a328-4aed7687f1a8']) {
+                    sh 'git checkout develop'
+                    sh 'git pull'
+                    executeMavenCommand "mvn -e jgitflow:release-start -DdevelopmentVersion=$DEVELOP_VERSION - DreleaseVersion=$RELEASE_VERSION"
+                  }
                 }
-
               }
             }
           } catch (Exception e) {
