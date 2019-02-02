@@ -115,6 +115,26 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>io.ultreia.java4all.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0.0-rc-1</version>
+                <configuration>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>develop</developBranchName>
+                        <featureBranchName>feature/</featureBranchName>
+                        <releaseBranchName>release/</releaseBranchName>
+                        <hotfixBranchName>hotfix/</hotfixBranchName>
+                        <verionTagPrefix>version-</verionTagPrefix>
+                    </flowInitContext>
+
+                    <pushReleases>true</pushReleases>
+                    <keepBranch>false</keepBranch>
+                    <noDeploy>true</noDeploy>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
