@@ -9,6 +9,7 @@ pipeline {
       steps {
         script {
           try {
+            echo env.BRANCH_NAME
             if (env.BRANCH_NAME == 'develop') {
               timeout(time: 1, unit: 'MINUTES') {
 
