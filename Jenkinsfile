@@ -25,8 +25,8 @@ pipeline {
                   def DEVELOP_VERSION = startReleaseInput['DEV']
                   def RELEASE_VERSION = startReleaseInput['REL']
 
-                  withCredentials([usernamePassword(credentialsId: 'password')]) {
-                    sh 'git remote set-url origin https://github.com/Schmowser/RadioRepetitive'
+                  sshagent (credentials: ['77d04bc5-89fa-4884-b4e9-de9b17384915']) {
+                    sh 'git remote set-url origin git@github.com:Schmowser/RadioRepetitive'
                     sh 'git push -f origin HEAD:develop'
                     executeMavenCommand "mvn -e jgitflow:release-start -DdevelopmentVersion=$DEVELOP_VERSION - DreleaseVersion=$RELEASE_VERSION"
                   }
