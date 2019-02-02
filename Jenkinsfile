@@ -3,6 +3,10 @@
 pipeline {
   agent any
 
+  environment {
+    AUTH = credentials('7652c13d-6bfb-441d-a328-4aed7687f1a8')
+  }
+
   stages {
 
     stage('Start Release') {
@@ -25,11 +29,10 @@ pipeline {
                   def DEVELOP_VERSION = startReleaseInput['DEV']
                   def RELEASE_VERSION = startReleaseInput['REL']
 
-                  withCredentials([usernamePassword(credentialsId: 'password')]) {
-                    sh 'git checkout develop'
-                    sh 'git pull'
-                    executeMavenCommand "mvn -e jgitflow:release-start -DdevelopmentVersion=$DEVELOP_VERSION - DreleaseVersion=$RELEASE_VERSION"
-                  }
+                  sh 'git checkout develop'
+                  sh 'git pull'
+                  executeMavenCommand "mvn -e jgitflow:release-start -DdevelopmentVersion=$DEVELOP_VERSION - DreleaseVersion=$RELEASE_VERSION"
+
                 }
               }
             }
