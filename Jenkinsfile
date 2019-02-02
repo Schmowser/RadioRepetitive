@@ -7,7 +7,7 @@ pipeline {
 
     stage('Start Release') {
       when {
-        env.BRANCH_NAME == 'develop'
+        return env.BRANCH_NAME == 'develop'
       }
       steps {
         script {
