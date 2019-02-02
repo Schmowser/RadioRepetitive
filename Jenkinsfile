@@ -5,6 +5,12 @@ pipeline {
 
   stages {
 
+    stage('Build') {
+      steps {
+        executeMavenCommand('mvn -B -V -U -e clean verify')
+      }
+    }
+
     stage('Start Release') {
       steps {
         script {
@@ -34,12 +40,6 @@ pipeline {
             echo 'No Release Process started.'
           }
         }
-      }
-    }
-
-    stage('Build') {
-      steps {
-        executeMavenCommand('mvn -B -V -U -e clean verify')
       }
     }
 
