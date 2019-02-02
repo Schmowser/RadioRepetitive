@@ -6,7 +6,7 @@
 
     <groupId>de.schmowser.radio</groupId>
     <artifactId>compression-service</artifactId>
-    <version>develop-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>radio-repetitive</name>

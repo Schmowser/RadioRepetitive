@@ -43,6 +43,12 @@ pipeline {
       }
     }
 
+    stage('Build') {
+      steps {
+        executeMavenCommand('mvn -B -V -U -e clean verify')
+      }
+    }
+
     stage('Finish Release') {
       when {
         anyOf {
