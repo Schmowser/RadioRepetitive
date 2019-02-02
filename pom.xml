@@ -130,6 +130,7 @@
                         <versionTagPrefix>version-</versionTagPrefix>
                     </flowInitContext>
 
+                    <allowUntracked>true</allowUntracked>
                     <pushReleases>true</pushReleases>
                     <keepBranch>false</keepBranch>
                     <noDeploy>true</noDeploy>
