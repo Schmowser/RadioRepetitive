@@ -9,9 +9,7 @@ pipeline {
       steps {
         script {
           try {
-            echo "${BRANCH}"
-            echo "${params.BRANCH}"
-            if ("${BRANCH}" == 'develop') {
+            if ("${params.BRANCH}" == 'develop') {
               timeout(time: 1, unit: 'MINUTES') {
 
                 def startReleaseInput = input(

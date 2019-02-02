@@ -127,7 +127,7 @@
                         <featureBranchPrefix>feature/</featureBranchPrefix>
                         <releaseBranchPrefix>release/</releaseBranchPrefix>
                         <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
-                        <verionTagPrefix>version-</verionTagPrefix>
+                        <versionTagPrefix>version-</versionTagPrefix>
                     </flowInitContext>
 
                     <pushReleases>true</pushReleases>
