@@ -12,6 +12,13 @@
     <name>radio-repetitive</name>
     <description>compression-service</description>
 
+    <scm>
+        <developerConnection>
+            scm:git:https://github.com/Schmowser/RadioRepetitive.git
+        </developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -130,6 +137,7 @@
                         <versionTagPrefix>version-</versionTagPrefix>
                     </flowInitContext>
 
+                    <enableSshAgent>true</enableSshAgent>
                     <allowUntracked>true</allowUntracked>
                     <pushReleases>true</pushReleases>
                     <keepBranch>false</keepBranch>
