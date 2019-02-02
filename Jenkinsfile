@@ -7,9 +7,7 @@ pipeline {
 
     stage('Start Release') {
       when {
-        anyOf {
-          branch 'develop'
-        }
+        branch '**develop'
       }
       steps {
         script {
