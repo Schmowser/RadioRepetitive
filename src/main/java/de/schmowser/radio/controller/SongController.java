@@ -8,6 +8,7 @@ import de.schmowser.radio.service.CompressionService;
 import de.schmowser.radio.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,9 @@ public class SongController {
 
     private CompressionService compressionService;
     private SongService songService;
+
+    @Autowired
+    KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
     public SongController(SongRepository songRepository, CompressionService compressionService, SongService songService) {
@@ -85,5 +89,13 @@ public class SongController {
         return "Thanks for trying. But it seems like nothing's here!";
     }
 
+    @GetMapping("/songs/kafka/{msg}")
+    @ResponseStatus(HttpStatus.OK)
+    public String getMsgAndSendToTopic(@PathVariable String msg) {
+
+        kafkaTemplate.send("test", msg);
+
+        return msg;
+    }
 }
 
